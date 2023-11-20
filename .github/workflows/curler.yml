@@ -3,19 +3,17 @@
 name: Callable Workflow
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       url:
+        description: 'URL to curl'
         required: true
         type: string
 
 jobs:
-  run-container:
-    name: Running a container as a step
+  run-curl:
     runs-on: ubuntu-latest
-    container: xxradar/hackon
-
     steps:
-      - uses: actions/checkout@v3
-      - name: curler
-        run: curl ${{ inputs.url }}
+      - name: Run curl command
+        run: |
+          curl "${{ github.event.inputs.url }}"
