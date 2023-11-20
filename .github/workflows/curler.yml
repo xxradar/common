@@ -3,7 +3,7 @@
 name: Callable Workflow
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       url:
         description: 'URL to curl'
