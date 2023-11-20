@@ -1,0 +1,21 @@
+# .github/workflows/callable_workflow.yml
+
+name: Callable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      url:
+        required: true
+        type: string
+
+jobs:
+  run-container:
+    name: Running a container as a step
+    runs-on: ubuntu-latest
+    container: xxradar/hackon
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: curler
+        run: curl ${{ inputs.url }}
